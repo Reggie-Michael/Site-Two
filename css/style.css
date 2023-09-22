@@ -1,0 +1,636 @@
+/* Fonts and Reset  */
+
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500&display=swap');
+    @import url('https://db.onlinewebfonts.com/c/4aa3e37e571255737e5e6d4e9d9770a5?family=Rockwell');
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        text-decoration: none;
+
+    }
+
+    @font-face {
+        font-family: 'Rockwell';
+        src: url('../fonts/Rockwell.woff2') format('woff2'),
+            url('../fonts/Rockwell.woff') format('woff');
+    }
+
+    .flex {
+        display: flex;
+    }
+
+    .flex-column {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .flex-center {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .flex-align-center {
+        display: flex;
+        align-items: center;
+    }
+
+    .d-none {
+        display: none;
+    }
+
+/* Styling Begins  */
+
+    body {
+        scroll-behavior: smooth;
+    }
+
+    body.modal-open {
+        overflow: hidden;
+    }
+
+/* Landing Page  */
+
+    .landing-page {
+        width: 100%;
+        height: 100dvh;
+        flex-direction: column;
+        font-family: "Rockwell", sans-serif;
+        animation: fade-in .5s forwards ease;
+
+    }
+
+    /* --Header */
+
+        .header, header {
+            width: 100%;
+            height: 8rem;
+        }
+
+        nav {
+            width: 100%;
+            gap: 3rem;
+            height: 7rem;
+            margin: 0 5%;
+        }
+
+        nav .logo {
+            width: 20%;
+            height: 7rem;
+            justify-content: start;
+
+        }
+
+        nav .logo img {
+            width: 6rem;
+            height: 6rem;
+            aspect-ratio: 2/2;
+        }
+
+        nav ul {
+            list-style: none;
+        }
+
+        nav .web-pages {
+            display: flex;
+            width: 50%;
+            height: 100%;
+            align-items: center;
+            justify-content: space-between;
+            list-style: none;
+            font-size: 22px;
+        }
+
+        nav .web-pages .nav-link {
+            width: 5rem;
+            height: 2rem;
+
+        }
+
+        .dpdn-nav-con {
+            position: relative;
+        }
+        .dpdn-nav-con:hover  .dpdn-nav{
+            display: flex;
+            transition: 400ms all ease;
+        }
+
+
+        nav ul li .dpdn-nav {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            width: 16rem;
+            height: 16rem;
+            gap: 1.3rem;
+            padding: 2rem;
+            position: absolute;
+            background: rgba(172, 2, 2, 0.411);
+            top: 2.25rem;
+            left: 2rem;
+            font-size: 16px;
+            text-transform: capitalize;
+            border-radius: 4px;
+            box-shadow: 1px 2px 5px 1px rgba(0, 0, 0, 0);
+            animation-name: scale-in;
+            animation-fill-mode: forwards;
+            animation-duration: .7s;
+            z-index: 99;
+            backdrop-filter: blur(2px);
+
+        }
+
+
+        nav a:hover {
+            font-size: larger;
+            transition: 300ms all ease-in-out;
+            animation-name: border-reveal;
+            animation-duration: 8s;
+            animation-iteration-count: infinite;
+            animation-timing-function: 1s ease-in-out;
+            /* border-color: red; */
+            box-sizing: content-box;
+            border-style: solid;
+            padding: 1px 5px;
+            border-radius: 10px;
+        }
+
+    /* --Header End  */
+
+    /* --Landing page Contents Style  */
+
+        .Lan-page-content-container {
+            width: 100%;
+            padding: 1% 10%;
+            height: 80dvh;
+            flex-direction: column;
+            justify-content: space-around;
+            text-align: center;
+        }
+
+        .Lan-page-content-container .hero {
+            font-size: 40px;
+            color: rgb(124, 0, 0);
+            width: 75%;
+            letter-spacing: 8px;
+            line-height: 320%;
+            line-break: anywhere;
+            text-shadow: -2px 4px 3px rgba(0, 0, 0, 0.288);
+            height: fit-content;
+        }
+
+        .Lan-page-content-container .hero.animate{
+            animation: click 1s linear;
+        }
+
+
+        .Lan-page-content-container .hero h1 {
+            text-transform: uppercase;
+            margin: 0;
+            background-image: linear-gradient(-225deg, #231557 0%, #44107a 29%, #ff1361 67%, #fff800 100%);
+            background-size: auto auto;
+            background-clip: border-box;
+            background-size: 200% auto;
+            color: #fff;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+            animation: text-clip 2s linear infinite;
+            cursor: pointer;
+            z-index: 3;
+            transition: 400ms ease-in-out;
+        }
+
+        .Lan-page-content-container .hero h1:hover {
+            scale: 1.05;
+            transition: 400ms ease-in;
+            animation: flip 2s linear infinite, text-clip 2s linear infinite;
+        }
+
+
+        .Lan-page-content-container .hero h1:active{
+            transform: scale(1);
+            scale: 1;
+            /* color: green; */
+            background-clip: none;
+            text-fill-color: none;
+            -webkit-background-clip: none;
+            -webkit-text-fill-color: none;
+            /* animation: shadows 1.2s ease-in infinite, move 1.2s ease-in infinite; */
+            animation: click 1s ease-in-out infinite;
+        }
+
+        .Lan-page-content-container .hero h1 span {
+            font-size: larger;
+        }
+
+        .Lan-page-content-container .path-nav {
+            gap: 10px;
+            height: 3rem;
+            width: 10rem;
+            font-size: 24px;
+            transition: 200ms ease-in-out;
+            justify-content: start;
+        }
+
+        .Lan-page-content-container .path-nav a:hover {
+            scale: 1.1;
+            opacity: 0.9;
+            transition: 400ms linear;
+            margin: 0 5px;
+            text-decoration: underline 1px solid;
+        }
+
+        .Lan-page-content-container .detail {
+            font-family: 'Roboto', sans-serif;
+        }
+
+
+        .Lan-page-content-container .detail a:hover{
+            font-size: 20px;
+            text-decoration: underline 1px solid;
+            transition: 400ms all ease-in-out;
+        }
+
+    /* End Of Landing Page Content Style  */
+
+/* End Of Landing Page Style  */
+
+
+/* Start Of Disciple Page  */
+
+    .disciple-page {
+        width: 100%;
+        padding: 0 10%;
+        margin: 2rem 0;
+        background-color: rgba(185, 185, 185, 0.137);
+        gap: 5rem;
+    }
+
+    /* --Disciple Page Heading Styling Start */
+
+        .disciple-page .heading {
+            margin-top: 1rem;
+            height: 25rem;
+            justify-content: space-around;
+        }
+
+        .disciple-page .heading h2 {
+            font-size: 40px;
+            letter-spacing: 3px;
+            /* color: transparent; */
+            text-shadow: -2px 5px 3px rgba(0, 0, 0, 0.205);
+            /* -webkit-text-stroke: 1px rgba(41, 74, 102, 0.445); */
+        }
+
+        .disciple-page .heading .little-explanation {
+            font-size: 16px;
+            line-height: 2.7;
+            font-weight: 500;
+            font-family: "Roboto";
+
+        }
+
+        .disciple-page .heading .little-explanation .bold {
+            font-size: larger;
+            font-weight: bolder;
+        }
+
+        .disciple-page .heading .little-explanation .bible-passage {
+            /* border: 2px solid; */
+            position: relative;
+        }
+
+        .disciple-page .heading .little-explanation .bible-passage a:hover{
+            text-decoration: underline 1px solid;
+            transition: 400ms ease;
+
+        }
+
+        .disciple-page .heading .little-explanation .bible-passage a:hover ~ .verse{
+            display: inline;
+            animation: scale-in .5s ease;
+
+        }
+
+        .disciple-page .heading .little-explanation .bible-passage .verse{
+            display: none;
+            transition: 400ms ease;
+            width: 220px;
+            border: 1px solid;
+            background-color: #f0f0f0b4;
+            position: absolute;
+            line-height: 1.7;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 2px 3px 2px 2px rgba(0, 0, 0, 0.678);
+            top: 90%;
+            left: 26%;
+            backdrop-filter: blur(10px);
+            z-index: 9;
+        }
+
+    /* --Disciple Page Heading Styling Ends  */
+
+    /* The Twelves Style Starts */
+
+        .disciple-page .the-twelves {
+            width: 100%;
+            /* position: relative; */
+        }
+
+        .disciple-page .the-twelves .disciple-box {
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* Three columns in each row */
+            gap: 30px 20px;
+            height: 150rem;
+            padding: 1rem;
+        }
+        /* --Card Frame  */
+
+        .disciple-page .the-twelves .disciple-box .d-card {
+            background-color: #f0f0f0;
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ccc;
+            position: relative;
+            border-radius: 10px;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+        }
+
+        .disciple-page .the-twelves .disciple-box .first {
+            grid-column: 2 / 3;
+            grid-row: span 1;
+        }
+
+        .disciple-page .the-twelves .disciple-box .second {
+            grid-column: 1 / 2;
+        }
+
+        .disciple-page .the-twelves .disciple-box .d-card {
+            background-color: #f0f0f0;
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ccc;
+        }
+
+        .disciple-page .the-twelves .disciple-box .d-card:hover {
+            transform: rotateY(180deg);
+            /* background-color: rebeccapurple; */
+        }
+
+        /* --Card Faces  */
+
+        .disciple-box .d-card .front-face, .disciple-box .d-card .back-face {
+            position: absolute;
+            width: 95%;
+            height: 95%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            /* background-color: red; */
+        }
+
+        .disciple-box .d-card .front-face {
+            color: black;
+            gap: 5px;
+            transition: 300ms all ease-in-out;
+            border-radius: 10px; 
+            overflow: hidden;
+
+        }
+
+        .disciple-box .d-card .front-face .image-con {
+            height: 90%;
+
+
+        }
+
+        .disciple-box .d-card .front-face .image-con img {
+            object-fit: cover;
+            object-position: center;
+            width: 100%;
+            /* aspect-ratio: 2/2; */
+            border-radius: 10px;
+            transition: 300ms all ease-in-out;
+        }
+
+        /* 
+        .disciple-box .d-card .front-face .image-con img:hover {
+            transition: 300ms all ease-in-out;
+            scale: 1.1;
+        } */
+
+        .disciple-box .d-card .front-face .D-name{
+            height: 10%;
+            font-size: 25px;
+            
+        }
+
+        .disciple-box .d-card .back-face {
+            /* background-color: #555; */
+            transform: rotateY(180deg);
+            justify-content: space-between;
+            color: black;
+            overflow: auto;
+            gap: 10px;
+            font-size: 26px;
+            line-height: 1.6;
+        }
+
+        .disciple-box .d-card .back-face h3{
+            font-size: 40px;
+        }
+
+        .back-face .book  {
+            gap: 10px;
+        }
+        .back-face .book h5{
+            font-size: 32px;
+        }
+
+    /* --The Twelves Style Ends */
+
+    /* --Modal Style Start  */
+
+        
+
+        .flip-box-wrap {
+            position: fixed;
+            width: 100%;
+            height: 100dvh;
+            background-color: rgba(0, 0, 0, 0.787);
+            /* animation-delay: 1s; */
+            animation-duration: 1s;
+            animation-timing-function: 100ms ease-in-out;
+            animation-play-state: running;
+            animation-fill-mode: forwards;
+            transition: 300ms all ease-in-out;
+            z-index: 999;
+            top: 0;
+            left: 0;
+            backdrop-filter: blur(30px);
+            
+        }
+
+        /* Hamburger Menu */
+
+            .close {
+                position: absolute;
+                right: 3%;
+                top: 1.5%;
+            }
+            .hamburger {
+                width: 2em;
+                height: 40px;
+                z-index: 5;
+                animation-duration: .7s;
+                animation-timing-function: ease-in-out;
+                animation-play-state: running;
+                transition: 100ms linear;
+                perspective: 1000px;
+                
+            }
+
+            .hamburger div {
+                width: 1.7em;
+                height: 5px;
+                border-radius: 5px;
+                background-color: #0770ad;
+                margin-top: 2px;
+                transition: all 0.3s ease-in-out;
+            }
+
+            .hamburger .top {
+                transform: rotate(-410deg);
+                margin-top: 20px;
+                width: 1.8em;
+            }
+            .hamburger .bottom {
+                opacity: 0;
+                transform: rotate(410deg);
+                width: 1.8em;
+            }
+            .hamburger .middle {
+                transform: rotate(410deg);
+                margin-top: -5px;
+                width: 1.8em;
+            }
+            .hamburger .back {
+                transform: rotateY(180deg);
+            }
+
+            #hamburger-box {
+                display: none;
+            }
+
+        /* --Modal Inner  */
+
+            .flip-box {
+                width: 90%;
+                height: 90%;
+                background-color: rgba(0, 0, 0, 0);
+                box-shadow: 3px 3px 10px 2px rgba(255, 255, 255, 0.3);
+                padding: 2%;
+                border-radius: 4%;
+                perspective: 2000px;
+                transition: 300ms all ease-in-out;
+                z-index: 1000;
+                overflow: hidden;
+            }
+
+            .inner {
+                position: relative;
+                width: 100%;
+                height: 100%;
+                padding: 1rem;
+                border-radius: 20px;
+                background-color: rgba(128, 0, 128, 0.222);
+                transition: transform 0.8s;
+                transform-style: preserve-3d;
+            }
+ 
+            /*.inner:hover {
+                transform: rotateY(180deg);
+                background-color: rebeccapurple;
+            } */
+
+            .inner.revealed {
+                transform: rotateY(180deg);
+            }
+        /* --Face Styling  */
+
+            .front, .back {
+                position: absolute;
+                width: 90%;
+                height: 90%;
+                max-width: 90%;
+                max-height: 100%;
+                -webkit-backface-visibility: hidden;
+                backface-visibility: hidden;
+            }
+
+        /* --Front Face Styling */
+
+            .front {
+                color: black;
+                transition: 300ms all ease-in-out;
+                border-radius: 10px; 
+                overflow: hidden;
+            }
+
+            .front img {
+                width: 100%;
+                object-fit: cover;
+                transition: 700ms all ease-in-out;
+                object-position: top ;
+                border-radius: 10px;
+                aspect-ratio: 3 / 2;
+                
+            }
+
+            .front img:hover {
+                opacity: 0.9;
+                transform: scale(1.4);
+                transition: 700ms all ease-in-out;
+            }
+
+        /* --Back Face Styling */
+
+
+            .back {
+                transform: rotateY(180deg);
+                color: black;
+                padding: 1%;
+                /* aspect-ratio: 2 / 2; */
+                overflow: auto;
+                
+            }
+            .back::after {
+                content: "";
+                clear: both;
+                overflow: auto;
+                display: table;
+            }
+
+        
+
+            .back img {
+                float: left;
+                aspect-ratio: 2 / 2;
+                margin: 2px 9px;
+                border-radius: 50%;
+                object-fit: cover;
+                object-position: top;
+
+            }
+
+        /* --Face Style End   */
+
+    /* --Modal Style Start  */
+
+/* Disciple Page Style End  */
+    
