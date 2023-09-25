@@ -1,122 +1,198 @@
+// Get references to DOM elements
 
-let modalWrap = document.getElementById("modalWrap");
-let modalWrap1 = document.getElementById("modalWrap1");
-let modalWrap2 = document.getElementById("modalWrap2");
-let modalWrap3 = document.getElementById("modalWrap3");
-let modalWrap4 = document.getElementById("modalWrap4");
-let modalWrap5 = document.getElementById("modalWrap5");
-let modalWrap6 = document.getElementById("modalWrap6");
-let modalWrap7 = document.getElementById("modalWrap7");
-let modalWrap8 = document.getElementById("modalWrap8");
-let modalWrap9 = document.getElementById("modalWrap9");
-let modalWrap10 = document.getElementById("modalWrap10");
-let modalWrap11 = document.getElementById("modalWrap11");
-let modalWrap12 = document.getElementById("modalWrap12");
+const webPage = document.getElementById('full-page');
+const landingPage = document.getElementById('landing-page');
+const disciplePage = document.getElementById('disciple-page');
 
+let bodyHeight = parseFloat(getComputedStyle(document.body).height);
+let pageHeight = parseFloat(getComputedStyle(webPage).height);
+let pageGap = parseFloat(getComputedStyle(webPage).gap);
+let landPageHeight = parseFloat(getComputedStyle(landingPage).height);
+let landPageMargin = parseFloat(getComputedStyle(landingPage).marginTop) + parseFloat(getComputedStyle(landingPage).marginBottom);
+let disciplePageHeight = parseFloat(getComputedStyle(disciplePage).height);
+let disciplePageMargin = parseFloat(getComputedStyle(disciplePage).marginTop) + parseFloat(getComputedStyle(disciplePage).marginBottom);
 
-let modalWrapSecond = document.querySelectorAll('flip-box-wrap active');
-let modal = document.getElementById("modalBox");
-// let box = document.getElementById("flip-box");
-
-// Modal Close Buttons 
-let modalClose = document.getElementById("close")
-let modalClose1 = document.getElementById("close1")
-let modalClose2 = document.getElementById("close2")
-let modalClose3 = document.getElementById("close3")
-let modalClose4 = document.getElementById("close4")
-let modalClose5 = document.getElementById("close5")
-let modalClose6 = document.getElementById("close6")
-let modalClose7 = document.getElementById("close7")
-let modalClose8 = document.getElementById("close8")
-let modalClose9 = document.getElementById("close9")
-let modalClose10 = document.getElementById("close10")
-let modalClose11 = document.getElementById("close11")
-let modalClose12 = document.getElementById("close12")
-
-// inner modal 
-let modalInner = document.getElementById("modalInside");
-
-// Modal Open Faces 
-let modalBase = document.getElementById("firstDisciple");
-let modalBase1 = document.getElementById("secondDisciple");
-let modalBase2 = document.getElementById("thirdDisciple");
-let modalBase3 = document.getElementById("fourthDisciple");
-let modalBase4 = document.getElementById("fifthDisciple");
-let modalBase5 = document.getElementById("sixthDisciple");
-let modalBase6 = document.getElementById("seventhDisciple");
-let modalBase7 = document.getElementById("eighthDisciple");
-let modalBase8 = document.getElementById("ninthDisciple");
-let modalBase9 = document.getElementById("tenthDisciple");
-let modalBase10 = document.getElementById("eleventhDisciple");
-let modalBase11 = document.getElementById("twelfthDisciple");
-let modalBase12 = document.getElementById("twelfthDisciple2");
+console.log(`Webpage height is ${bodyHeight} and ${pageHeight}(main-container) , Webpage gap is ${pageGap}, Landing Page height is ${landPageHeight}, Landing Page margin is top${parseFloat(getComputedStyle(landingPage).marginTop)}, bottom${parseFloat(getComputedStyle(landingPage).marginBottom)} and total${landPageMargin}
+Disciple Page height is ${disciplePageHeight}, Landing Page margin is top${parseFloat(getComputedStyle(disciplePage).marginTop)}, bottom${parseFloat(getComputedStyle(disciplePage).marginBottom)} and total${disciplePageMargin} .` )
+let welcomeView = document.getElementById('hero');
+// Modals
+const modalWrap = [];
+const modalClose = [];
+const modal = [];
+const modalInner = [];
+const modalBase = [] ;
 
 
-// Functions 
+
+// Modal Wraps, Base and Close Buttons
+for (let i = 0; i < 13; i++) {
+    modalWrap.push(document.getElementById(`${i === 0 ? 'modalWrap' : 'modalWrap' + i}`)); // Modal Wraps
+    modalBase.push(document.getElementById(`${i === 0 ? 'disciple' :  'disciple' + i}`));  //Base to Open Modal
+    modalClose.push(document.getElementById(`${i === 0 ? 'close' : 'close' + i}`)); //Modal Close Button
+    modal.push(document.getElementById(`${i === 0 ? 'modalBox' : 'modalBox' + i}`)) ; // Modal
+    modalInner.push(document.getElementById(`${i === 0 ? 'modalInside' : 'modalInside' + i}`)) ; // Modal Content
+}
+
+
+console.log(modalClose);
+console.log(modalWrap);
+console.log(modal);
+console.log(modalInner);
+console.log(modalBase);
+
+
+// Functions
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    setTimeout(function() {
+        welcomeView.classList.remove("animate");
+
+    }, 800)
+
+});
 
 function revealing(switched) {
     switched.classList.toggle("revealed");
+   
+}
+
+function modalDisplay(modalWrapVar) {
+  modalWrapVar.classList.remove('d-none');
+  modalWrapVar.classList.add("flex-center");
+  modalWrapVar.classList.add("active");
+  modalWrapVar.style.animationName = "fade-in";
+  document.body.classList.add("modal-open");
+  webPage.classList.add("modal-open");
+}
+
+function modalReClick(modalWrapBaseVar, ModalItself) {
+  modalWrapBaseVar.addEventListener("click", function () {
+    modalDisplay(ModalItself);
+  });
+}
+
+function modalDisplayUnset(modalWrapVar2) {
+  modalWrapVar2.style.animationName = "fade-out";
+  setTimeout(function () {
+    modalWrapVar2.classList.remove('active');
+    modalWrapVar2.classList.remove("flex-center");
+    modalWrapVar2.classList.add("d-none");
+    document.body.classList.remove("modal-open");
+    webPage.classList.remove("modal-open");
+
+  }, 800);
+}
+
+
+function modalFade(modalWrapBaseVar2, ModalItself2) {
+  modalWrapBaseVar2.onclick = function () {
+    modalDisplayUnset(ModalItself2);
+  }
+}
+
+
+// Inner modal activate function
+for (let i = 0; i < 13; i++) {
+    // Modal Activate 
+    modalReClick(modalBase[i], modalWrap[i]);
+
+    // Modal De-activate 
+    modalFade(modalClose[i], modalWrap[i]);
+
+    // Flipping Modal
+
+    modal[i].addEventListener('click', function() {
+        modalInner[i].classList.toggle('revealed')
+    })
 };
 
-function modalDisplay (modalWrapVar) {
-    modalWrapVar.classList.remove('d-none');
-    modalWrapVar.classList.add("flex-center");
-    modalWrapVar.classList.add("active");
-    modalWrapVar.style.animationName = "fade-in";
 
-}
-function modalReClick (modalWrapBaseVar, ModalItself) {
-    modalWrapBaseVar.addEventListener("click", function () {
-        modalDisplay(ModalItself);
+let br = document.createElement('br');
+
+const scrollValue = document.getElementById('scroll');
+
+window.addEventListener('load', () => {
+    document.body.addEventListener('scroll', () => {
+        scrollValue.textContent = `scrollTop: ${document.body.scrollTop}`;
+        console.log(document.body.scrollTop)
     });
-}
+})
 
-function modalDisplayUnset (modalWrapVar2) {
-    modalWrapVar2.style.animationName = "fade-out";
-    setTimeout(function (){
-        modalWrapVar2.classList.remove('active');
-        modalWrapVar2.classList.remove("flex-center");
-        modalWrapVar2.classList.add("d-none");
+const header = document.getElementById('header');
+const scrollPosition = window.scrollY;
 
-    }, 800);
+window.addEventListener('scroll', () => {
+    if (window.scrollY < 100) { // You can adjust the scroll threshold here
+        console.log("y")
+        scrollValue.textContent = `100`;
+    }  else if (window.scrollY < 200) {
+        scrollValue.textContent = `200`;
+        console.log('a')
+    } else if (window.scrollY < 300) {
+        scrollValue.textContent = `300`;
+        console.log('u')
+    } else if (window.scrollY < 400) {
+        scrollValue.textContent = `400`;
+        console.log('window.scrollY')
+    } else if (window.scrollY < 500) {
+        scrollValue.textContent = `500`;
+        console.log('window.scrollX')
+    } else if (window.scrollY < 600) {
+        scrollValue.textContent = `600`;
+        console.log(window.scrollX)
+    } else if (window.scrollY < 700) {
+        scrollValue.textContent = `700`;
+        console.log(window.scrollY)
 
-}
-function modalFade (modalWrapBaseVar2, ModalItself2) {
-    modalWrapBaseVar2.addEventListener("click", function () {
-        modalDisplayUnset(ModalItself2);
-    });
-}
+    }else if (window.scrollY < 800) {
+        scrollValue.textContent = `800`;
+        console.log('u')
+    } else if (window.scrollY < 900) {
+        scrollValue.textContent = `900`;
+        console.log('window.scrollY')
+    } else if (window.scrollY < 1000) {
+        scrollValue.textContent = `1000`;
+        console.log('window.scrollX')
+    } else if (window.scrollY < 1100) {
+        scrollValue.textContent = `1100`;
+        console.log(window.scrollX)
+    } else if (window.scrollY < 1200) {
+        scrollValue.textContent = `1200`;
+        console.log(window.scrollY)
 
-// inner modal activate function
+    } else {
+        scrollValue.textContent = `0`;
 
-modalReClick(modalBase, modalWrap);
-modalReClick(modalBase1, modalWrap1);
-modalReClick(modalBase2, modalWrap2);
-modalReClick(modalBase3, modalWrap3);
-modalReClick(modalBase4, modalWrap4);
-modalReClick(modalBase5, modalWrap5);
-modalReClick(modalBase6, modalWrap6);
-modalReClick(modalBase7, modalWrap7);
-modalReClick(modalBase8, modalWrap8);
-modalReClick(modalBase9, modalWrap9);
-modalReClick(modalBase10, modalWrap10);
-modalReClick(modalBase11, modalWrap11);
-modalReClick(modalBase12, modalWrap12);
+    }
+});
 
-modalFade(modalClose, modalWrap);
-modalFade(modalClose1, modalWrap1);
-modalFade(modalClose2, modalWrap2);
-modalFade(modalClose3, modalWrap3);
-modalFade(modalClose4, modalWrap4);
-modalFade(modalClose5, modalWrap5);
-modalFade(modalClose6, modalWrap6);
-modalFade(modalClose7, modalWrap7);
-modalFade(modalClose8, modalWrap8);
-modalFade(modalClose9, modalWrap9);
-modalFade(modalClose10, modalWrap10);
-modalFade(modalClose11, modalWrap11);
-modalFade(modalClose12, modalWrap12);
+window.addEventListener('scroll', () => {
+    // Calculate the scroll position
+    const scrollPosition = window.scrollY;
 
-modal.onclick = function(){revealing(modalInner)};
+    // Define the start and end positions for the animation
+    const fadeInStart = 0; // Start fading in at 700 pixels from the top
+    const fadeOutEnd = landPageHeight + landPageMargin; // Start fading out at 1400 pixels from the top
+    const fadeInStart1 = landPageHeight / 2; // Start fading in at 700 pixels from the top
+    const fadeOutEnd1 = disciplePageHeight + pageGap + (disciplePageMargin / 1.5); // Start fading out at 1400 pixels from the top
+
+    // Check if the current scroll position is within the range for fading in
+    if (scrollPosition >= fadeInStart && scrollPosition < fadeOutEnd) {
+        landingPage.style.animationName = 'fade-in'; // Make the element fully visible
+    } else {
+        landingPage.style.animationName = 'fade-out'; // Make the element fully visible
+    }
+
+    // Check if the current scroll position is within the range for fading in
+    if (scrollPosition >= fadeInStart1 && scrollPosition < fadeOutEnd1) {
+        disciplePage.style.animationName = 'fade-in'; // Make the element fully visible
+    } else {
+        disciplePage.style.animationName = 'fade-out'; // Make the element fully visible
+    }
+});
+
+
 
 

@@ -42,12 +42,28 @@
 
 /* Styling Begins  */
 
-    body {
+    body, .main-container {
         scroll-behavior: smooth;
     }
 
-    body.modal-open {
+    body.modal-open, .main-container.modal-open {
         overflow: hidden;
+    }
+
+    .main-container {
+        gap: 25dvh;
+    }
+
+    .scroll-height {
+        width: 100px;
+        height: 30px;
+        padding: 5px 3px;
+        border: 2px solid;
+        position: fixed;
+        top: 50%;
+        right: -1px;
+        color: #ff1361;
+        text-align: left;
     }
 
 /* Landing Page  */
@@ -57,8 +73,9 @@
         height: 100dvh;
         flex-direction: column;
         font-family: "Rockwell", sans-serif;
-        animation: fade-in .5s forwards ease;
-
+        animation-duration: .5s;
+        animation-fill-mode: forwards;
+        animation-timing-function: ease;
     }
 
     /* --Header */
@@ -264,9 +281,13 @@
     .disciple-page {
         width: 100%;
         padding: 0 10%;
-        margin: 2rem 0;
         background-color: rgba(185, 185, 185, 0.137);
         gap: 5rem;
+        animation-duration: .5s;
+        animation-fill-mode: forwards;
+        animation-timing-function: ease;
+        margin-bottom: 3rem;
+
     }
 
     /* --Disciple Page Heading Styling Start */
@@ -483,6 +504,17 @@
                 right: 3%;
                 top: 1.5%;
             }
+
+
+            .close:hover {
+                filter: drop-shadow(4px 2px );
+            }
+
+            .close:active {
+                filter: drop-shadow(1px 1px );
+                translate: 3px 1px;
+            }
+
             .hamburger {
                 width: 2em;
                 height: 40px;
@@ -502,6 +534,7 @@
                 background-color: #0770ad;
                 margin-top: 2px;
                 transition: all 0.3s ease-in-out;
+
             }
 
             .hamburger .top {
@@ -523,7 +556,7 @@
                 transform: rotateY(180deg);
             }
 
-            #hamburger-box {
+            .close input[type="checkbox"] {
                 display: none;
             }
 
